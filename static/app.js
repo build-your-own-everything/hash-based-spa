@@ -3,6 +3,7 @@ window.onload = function() {
         const root = document.getElementById('root');
         root.innerHTML = '';
 
+        path = path.replace('#', '')
         switch (path) {
             case 'about':
                 root.innerHTML = '<h1>About Us</h1><p>This is the about page.</p>';
@@ -13,28 +14,33 @@ window.onload = function() {
             default:
                 root.innerHTML = '<h1>Home</h1><p>This is the home page.</p>';
         }
-        window.location.hash = path;
+        path
     }
 
     window.addEventListener('hashchange', () => {
-        handleRouteChange(window.location.pathname.substring(1))
+        handleRouteChange(window.location.hash.slice(1))
     });
-    
+
     handleRouteChange('');
 
     const aboutLink = document.getElementById('about-link');
     const contactLink = document.getElementById('contact-link');
+    const homeLink = document.getElementById('home-link');
+
+    homeLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        window.location.hash = '';
+    });
 
     aboutLink.addEventListener('click', (event) => {
         event.preventDefault();
-        handleRouteChange('about');
+        window.location.hash = 'about';
     });
 
     contactLink.addEventListener('click', (event) => {
         event.preventDefault();
-        handleRouteChange('contact');
+        window.location.hash = 'contact';
     });
 
-    window.addEventListener('hashchange', handleRouteChange);
-    handleRouteChange();
+    handleRouteChange(window.location.hash.slice(1));
 };

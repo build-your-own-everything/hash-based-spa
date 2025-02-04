@@ -14,14 +14,11 @@ window.onload = function() {
             default:
                 root.innerHTML = '<h1>Home</h1><p>This is the home page.</p>';
         }
-        path
     }
 
     window.addEventListener('hashchange', () => {
         handleRouteChange(window.location.hash.slice(1))
     });
-
-    handleRouteChange('');
 
     const aboutLink = document.getElementById('about-link');
     const contactLink = document.getElementById('contact-link');
